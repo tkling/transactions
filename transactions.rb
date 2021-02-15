@@ -99,8 +99,3 @@ class TransactionSet
   alias_method :tq,  :total_quantity
   alias_method :ts,  :total_spent
 end
-
-ts = TransactionSet.new :AMP
-ts.add_transaction price: 0.03924, amount: 10000
-ts.add_transaction price: 0.03697, amount: 10000
-
