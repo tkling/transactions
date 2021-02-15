@@ -25,11 +25,7 @@ class Transaction
   end
 
   def to_h
-    {
-      price:  price,
-      amount: amount,
-      fake:   fake
-    }
+    { price:  price, amount: amount, fake: fake }
   end
 end
 
@@ -74,10 +70,9 @@ class TransactionSet
 
   def sell_targets
     TARGET_PERCENTAGES.map do |p|
-      {
-        percentage: "#{(p * 100 - 100).round(2)}%",
-        price:      (buy_price * p).round(2)
-      }
+      p_str = "#{(p * 100 - 100).round(2)}%"
+      price = (buy_price * p).round(2)
+      { p_str => price }
     end
   end
 
@@ -90,10 +85,7 @@ class TransactionSet
   end
 
   def to_h
-    {
-      currency_type: currency_type,
-      transactions:  transactions.map(&:to_h)
-    }
+    { currency_type: currency_type, transactions:  transactions.map(&:to_h) }
   end
 
   alias_method :sts, :sell_targets
