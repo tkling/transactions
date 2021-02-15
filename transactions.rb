@@ -33,12 +33,13 @@ class Transaction
   end
 end
 
+TARGET_PERCENTAGES = [1.007, 1.017, 1.027, 1.037, 1.047, 1.057].freeze
+
 class TransactionSet
-  attr_reader :currency_type, :transactions, :target_percentages
+  attr_reader :currency_type, :transactions
 
   def initialize(currency_type)
     @currency_type = currency_type
-    @target_percentages = [1.007, 1.017, 1.027, 1.037, 1.047, 1.057]
     @transactions = []
   end
 
@@ -72,7 +73,7 @@ class TransactionSet
   end
 
   def sell_targets
-    target_percentages.map do |p|
+    TARGET_PERCENTAGES.map do |p|
       {
         percentage: "#{(p * 100 - 100).round(2)}%",
         price:      (buy_price * p).round(2)
