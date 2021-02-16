@@ -71,7 +71,7 @@ class TransactionSet
   def sell_targets
     TARGET_PERCENTAGES.map do |p|
       p_str = "#{(p * 100 - 100).round(2)}%"
-      price = (buy_price * p).round(2)
+      price = (buy_price * p).round(buy_price > 1.0 ? 2 : 6)
       { p_str => price }
     end
   end
