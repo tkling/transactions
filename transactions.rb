@@ -32,19 +32,19 @@ end
 TARGET_PERCENTAGES = [1.007, 1.017, 1.027, 1.037, 1.047, 1.057].freeze
 
 class TransactionSet
-  attr_reader :currency_type, :transactions
+  attr_reader :ticker, :transactions
 
-  def initialize(currency_type)
-    @currency_type = currency_type
+  def initialize(ticker)
+    @ticker = ticker
     @transactions = []
   end
 
   class << self
     def from_hash(hash)
-      currency_type = hash.fetch(:currency_type, :not_specified).to_sym
-      transactions =  hash.fetch(:transactions, [])
+      ticker       = (hash[:currency_type] || hash[:ticker] || :not_specified).to_sym
+      transactions = hash.fetch(:transactions, [])
 
-      new(currency_type).tap do |ts|
+      new(ticker).tap do |ts|
         transactions.each do |t|
           ts.add_transaction(**t.slice(:price, :amount, :fake))
         end
@@ -85,7 +85,7 @@ class TransactionSet
   end
 
   def to_h
-    { currency_type: currency_type, transactions:  transactions.map(&:to_h) }
+    { ticker: ticker, transactions:  transactions.map(&:to_h) }
   end
 
   alias_method :sts, :sell_targets

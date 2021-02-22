@@ -10,8 +10,8 @@ require 'pry'
 @start_time = Time.now
 @sets = []
 
-def new_ts(currency_type='whatever, man')
-  TransactionSet.new(currency_type).tap do |ts|
+def new_ts(ticker='whatever, man')
+  TransactionSet.new(ticker).tap do |ts|
     @sets.push(ts)
   end
 end
