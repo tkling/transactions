@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-$LOAD_PATH.unshift File.join(Dir.pwd, 'lib')
+%w[lib].each {|dir| $LOAD_PATH.unshift File.join(Dir.pwd, dir) }
 
 require 'constants'
 require 'transaction'
