@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
-$LOAD_PATH.unshift Dir.pwd
+$LOAD_PATH.unshift File.join(Dir.pwd, 'lib')
 
 SAVEFILE_DIR = './saves'
 
-require 'transactions'
+require 'constants'
+require 'transaction'
+require 'transaction_set'
+
 require 'json'
 require 'pry'
 
