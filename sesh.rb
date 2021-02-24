@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.join(Dir.pwd, 'lib')
 
-SAVEFILE_DIR = './saves'
-
 require 'constants'
 require 'transaction'
 require 'transaction_set'
@@ -23,8 +21,7 @@ def save_sesh(force_new_filename: false)
   Dir.mkdir(SAVEFILE_DIR) unless Dir.exist?(SAVEFILE_DIR)
 
   time      = (force_new_filename ? Time.now : @start_time).to_i
-  filename  = "sesh_#{time}"
-  file_path = File.join(SAVEFILE_DIR, filename)
+  file_path = File.join(SAVEFILE_DIR, "sesh_#{time}")
   content   = JSON.pretty_generate({start_time: time, sets: @sets.map(&:to_h)})
 
   File.write(file_path, content)
