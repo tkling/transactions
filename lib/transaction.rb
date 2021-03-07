@@ -25,6 +25,6 @@ class Transaction
   end
 
   def to_h
-    { price:  price, amount: amount, fake: fake }
+    { price: price, amount: amount, fake: fake }
   end
 end

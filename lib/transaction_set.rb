@@ -54,10 +54,10 @@ class TransactionSet
   end
 
   def to_h
-    { ticker: ticker, transactions:  transactions.map(&:to_h) }
+    { ticker: ticker, transactions: transactions.map(&:to_h) }
   end
 
-  alias_method :sts, :sell_targets
-  alias_method :tq,  :total_quantity
-  alias_method :ts,  :total_spent
+  alias sts sell_targets
+  alias tq  total_quantity
+  alias ts  total_spent
 end
