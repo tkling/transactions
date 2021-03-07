@@ -34,7 +34,7 @@ class TransactionSet
   end
 
   def return_percentage(market_price)
-    "#{(transactions.sum {|t| t.return_percentage(market_price) } / transactions.size).round(2)}%"
+    "#{((market_price / buy_price - 1) * 100).round(2)}%"
   end
 
   def sell_targets
