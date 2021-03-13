@@ -31,7 +31,7 @@ def load_last_sesh
   saves = Dir[File.join(File.expand_path(SAVEFILE_DIR), '*')]
   return "No saves in #{SAVEFILE_DIR} to load :(" if saves.empty?
 
-  save_path = saves.sort.last
+  save_path = saves.max
   from_json = JSON.parse(File.read(save_path), symbolize_names: true)
 
   @start_time = Time.at(from_json[:start_time])
